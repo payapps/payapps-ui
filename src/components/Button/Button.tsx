@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { LoadingSpinner, Tick } from '../Icons'
 import { ButtonProps } from './Button.d'
+import { StyledButton } from './Styles'
 
 const insert = (cond: any, ...value: any) => cond ? [value] : [] 
 
-const Wrapper = styled.button`
-  border: solid red 1px;
-`
 export const Button = ({ type = 'primary', loading = false, disabled = false, block = false, children, ...rest }: ButtonProps) => {
   const [loadingStatus, setLoadingStatus] = useState<{ progress: null | string }>({ progress: null })
 
@@ -45,12 +42,17 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
   }
 
   return (
-    <Wrapper className={CLASS_LIST} { ...rest } disabled={disabled}>
+    <StyledButton
+      className={CLASS_LIST}
+      buttonTheme={type}
+      { ...rest }
+      disabled={disabled}
+    >
       <div className='pa-button__inner-wrapper'>
         <div className="pa-button__text-content">{children}</div>
         <Status />
       </div>
-    </Wrapper>
+    </StyledButton>
   )
 }
 

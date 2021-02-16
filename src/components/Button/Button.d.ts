@@ -1,6 +1,6 @@
 import { AriaAttributes, DOMAttributes } from "react";
 
-export interface ButtonProps extends AriaAttributes, DOMAttributes<T> {
+export interface ButtonProps {
   children: any;
   type: 'primary' | 'tertiary' | 'secondary';
   loading?: boolean;
