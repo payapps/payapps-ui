@@ -1,4 +1,3 @@
-// import React from 'react'
 import styled, { css } from 'styled-components'
 
 const primaryStyles = css`
@@ -30,8 +29,6 @@ const tertiaryStyles = css`
     border-color: ${props => props.theme.colors.lightBlue};
   }
 `
-
-
 
 const buttonTypeStyles: {[key: string]: any} = {
   primary: primaryStyles,

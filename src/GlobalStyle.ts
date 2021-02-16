@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: ${props => props.theme.baseFontSize + 'px'};
+    font-size: ${props => props.theme.baseFontSize};
   }
 
   body {

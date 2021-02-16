@@ -26,8 +26,5 @@ export const theme: DefaultTheme = {
     toasterGreen: '#E9F5F0',
     errorRed: '#FEF7F8',
   },
-  size: (...value: any) => value.reduce((a: string, i: number) => {
-    console.log('aaa', i)
-    return `${a} ${i / baseFont}rem`
-  }, ''),
+  size: (...value: any) => value.reduce((a: string, i: number) => `${a} ${i / baseFont}rem`, ''),
 }
