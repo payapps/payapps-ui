@@ -5,43 +5,69 @@ const primaryStyles = css`
   background-color: ${props => props.theme.colors.lightBlue};
   border: solid ${props => props.theme.colors.lightBlue} 1px;
   color: ${props => props.theme.colors.white};
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
 `
 
 const secondaryStyles = css`
   background-color: ${props => props.theme.colors.white};
   border: solid rgba(0, 122, 255, 0.4) 1px;
   color: ${props => props.theme.colors.lightBlue};
+  &:hover {
+    ${primaryStyles}
+  }
 `
+
+const tertiaryStyles = css`
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.medGrey};
+  border: 1px solid ${props => props.theme.colors.lightGrey};
+  &:hover {
+    ${secondaryStyles};
+    border-color: ${props => props.theme.colors.lightBlue};
+  }
+`
+
+
 
 const buttonTypeStyles: {[key: string]: any} = {
   primary: primaryStyles,
   secondary: secondaryStyles,
-  // tertiary: tertiaryStyles,
+  tertiary: tertiaryStyles,
 }
 
 export const StyledButton = styled.button<{ buttonTheme: string }>`
+  &[disabled] {
+    background-color: ${props => props.theme.colors.xtraLightGrey};
+    color: ${props => props.theme.colors.lightGrey};
+    border: 1px solid rgba(182, 197, 206, 0.5);
+    pointer-events: none;
+  }
+
   ${(props) => buttonTypeStyles[props.buttonTheme]}
   display: inline-block;
   position: relative;
-  height: size(44);
-  padding: size(12) size(40) size(12);
-  font-family: 'Roboto';
+  height: ${props => props.theme.size(44)};
+  padding: ${props => props.theme.size(12, 40, 12)};
   font-weight: 700;
-  font-size: size(18);
-  border-radius: size(22);
+  font-size: ${props => props.theme.size(18)};
+  border-radius: ${props => props.theme.size(22)};
   text-transform: capitalize;
   cursor: pointer;
   transition: background-color 0.125s;
 
   &:not(.pa-button--block) + &:not(.pa-button--block) {
-    margin-left: size(16);
+    margin-left: ${props => props.theme.size(16)};
   }
 
   &.pa-button--block {
     display: block;
     width: 100%;
     & + & {
-      margin-top: size(16);
+      margin-top: ${props => props.theme.size(16)};
     }
   }
   

@@ -1,7 +1,9 @@
 import { DefaultTheme } from 'styled-components'
 
+const baseFont = 16
+
 export const theme: DefaultTheme = {
-  baseFontSize: 16,
+  baseFontSize: `${baseFont}px`,
   colors: {
     hoveredBg: 'rgba(0, 0, 0, 0.2)',
     activeBg: 'rgba(0, 0, 0, 0.1)',
@@ -23,5 +25,9 @@ export const theme: DefaultTheme = {
     infoBlue: '#F0F9FF',
     toasterGreen: '#E9F5F0',
     errorRed: '#FEF7F8',
-  }
+  },
+  size: (...value: any) => value.reduce((a: string, i: number) => {
+    console.log('aaa', i)
+    return `${a} ${i / baseFont}rem`
+  }, ''),
 }

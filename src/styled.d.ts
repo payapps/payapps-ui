@@ -2,7 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    baseFontSize: number;
+    baseFontSize: string;
     colors: {
       hoveredBg: string;
       activeBg: string;
@@ -22,6 +22,7 @@ declare module 'styled-components' {
       infoBlue: string;
       toasterGreen: string;
       errorRed: string;
-    }
+    },
+    size: (...val: any[]) => string;
   }
 }
