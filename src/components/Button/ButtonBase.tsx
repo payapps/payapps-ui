@@ -1,42 +1,6 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-const primaryStyles = css`
-  background-color: ${props => props.theme.colors.lightBlue};
-  border: solid ${props => props.theme.colors.lightBlue} 1px;
-  color: ${props => props.theme.colors.white};
-  &:hover {
-    &:before {
-      opacity: 1;
-    }
-  }
-`
-
-const secondaryStyles = css`
-  background-color: ${props => props.theme.colors.white};
-  border: solid rgba(0, 122, 255, 0.4) 1px;
-  color: ${props => props.theme.colors.lightBlue};
-  &:hover {
-    ${primaryStyles}
-  }
-`
-
-const tertiaryStyles = css`
-  background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.medGrey};
-  border: 1px solid ${props => props.theme.colors.lightGrey};
-  &:hover {
-    ${secondaryStyles};
-    border-color: ${props => props.theme.colors.lightBlue};
-  }
-`
-
-const buttonTypeStyles: {[key: string]: any} = {
-  primary: primaryStyles,
-  secondary: secondaryStyles,
-  tertiary: tertiaryStyles,
-}
-
-export const StyledButton = styled.button<{ buttonTheme: string }>`
+export const ButtonBase = styled.button<{ buttonTheme: string }>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};
     color: ${props => props.theme.colors.lightGrey};
@@ -44,7 +8,6 @@ export const StyledButton = styled.button<{ buttonTheme: string }>`
     pointer-events: none;
   }
 
-  ${(props) => buttonTypeStyles[props.buttonTheme]}
   display: inline-block;
   position: relative;
   height: ${props => props.theme.size(44)};

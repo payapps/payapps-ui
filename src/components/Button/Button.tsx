@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { LoadingSpinner, Tick } from '../Icons'
 import { ButtonProps } from './Button.d'
-import { StyledButton } from './Styles'
+import { Primary, Secondary, Tertiary } from '.'
 
 const insert = (cond: any, ...value: any) => cond ? [value] : [] 
 
 export const Button = ({ type = 'primary', loading = false, disabled = false, block = false, children, ...rest }: ButtonProps) => {
   const [loadingStatus, setLoadingStatus] = useState<{ progress: null | string }>({ progress: null })
+
+  const ComponentTypes = {
+    primary: Primary,
+    secondary: Secondary,
+    tertiary: Tertiary,
+  }
+
+  const Component = ComponentTypes[type]
 
   const PENDING = 'PENDING';
   const SUCCESS = 'SUCCESS'
@@ -42,7 +50,7 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
   }
 
   return (
-    <StyledButton
+    <Component
       className={CLASS_LIST}
       buttonTheme={type}
       { ...rest }
@@ -52,7 +60,7 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
         <div className="pa-button__text-content">{children}</div>
         <Status />
       </div>
-    </StyledButton>
+    </Component>
   )
 }
 
