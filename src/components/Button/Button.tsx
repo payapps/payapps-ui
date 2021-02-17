@@ -6,16 +6,17 @@ import { Primary } from './Primary'
 import { Secondary } from './Secondary'
 import { Tertiary } from './Tertiary'
 
-const TextContent = styled.div`
-  transition: opacity 0.125s;
-`
+const TextContent = styled.div`transition: opacity 0.125s;`
+const Wrapper = styled.div`position: relative;`
 
-const Wrapper = styled.div`
-  position: relative;
-`
-
-export const Button = ({ type = 'primary', loading = false, disabled = false, block = false, children, ...rest }: ButtonProps) => {
-
+export const Button = ({
+  type = 'primary',
+  loading = false,
+  disabled = false,
+  block = false,
+  children,
+  ...rest
+}: ButtonProps) => {
   const ComponentTypes = {
     primary: Primary,
     secondary: Secondary,
