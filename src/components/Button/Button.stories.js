@@ -15,7 +15,6 @@ export const Primary = Template.bind({});
 Primary.args = {
   type: 'primary',
   loading: false,
-  text: 'Publish',
   disabled: false,
   children: 'Publish',
   block: false
