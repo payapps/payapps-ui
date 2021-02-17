@@ -67,52 +67,12 @@ export const ButtonBase = styled.button<{ block?: boolean }>`
     }
   }
 
-  .pa-button__inner-wrapper {
-    position: relative;
-  }
-
-  .pa-button__text-content {
-    transition: opacity 0.125s;
-  }
-
-  .pa-button__loading-indicator {
+  svg {
     position: absolute;
-    display: none;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-50%); 
-  }
-
-  .pa-button__loading-spinner {
-    width: 1.05em;
-    height: 1.05em;
-  }
-
-  &.pa-button--loading {
-    .pa-button__text-content {
-      opacity: 0;
-    }
-    &.pa-button--loading-success {
-      color: $white;
-      .pa-button__loading-success {
-        display: block;
-      }
-    }
-    &.pa-button--loading-pending {
-      background-color: $lightBlue;
-      color: $white;
-      border: solid $lightBlue 1px;
-      &:hover {
-        &:before { opacity: 1 }
-      }
-      .pa-button__loading-spinner {
-        display: block;
-      }
-    }
-  }
-
-  &.pa-button--loading-success {
-    background-color: $green;
-    border: solid $green 1px;
+    width: 1.1em;
+    height: 1.1em;
   }
 `

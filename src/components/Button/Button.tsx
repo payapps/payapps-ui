@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { LoadingSpinner, Tick } from '../Icons'
+import React from 'react'
+import styled from 'styled-components'
+import { LoadingSpinner } from '../Icons'
 import { ButtonProps } from './Button.d'
 import { Primary } from './Primary'
 import { Secondary } from './Secondary'
 import { Tertiary } from './Tertiary'
 
-const insert = (cond: any, ...value: any) => cond ? [value] : [] 
+const TextContent = styled.div`
+  transition: opacity 0.125s;
+`
+
+const Wrapper = styled.div`
+  position: relative;
+`
 
 export const Button = ({ type = 'primary', loading = false, disabled = false, block = false, children, ...rest }: ButtonProps) => {
-  const [loadingStatus, setLoadingStatus] = useState<{ progress: null | string }>({ progress: null })
 
   const ComponentTypes = {
     primary: Primary,
@@ -17,49 +23,19 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
   }
 
   const Component = ComponentTypes[type]
-
-  const PENDING = 'PENDING';
-  const SUCCESS = 'SUCCESS'
-  const BTTN_TYPE = `pa-button--${type}`
-
-  const CLASS_LIST = [
-    insert(loadingStatus.progress, 'pa-button--loading'),
-    insert(loadingStatus.progress === PENDING, 'pa-button--loading-pending'),
-    insert(loadingStatus.progress === SUCCESS, 'pa-button--loading-success'),
-  ].join(' ')
-
-  useEffect(() => {
-    const isPending = (loading && !loadingStatus.progress) || (loading && loadingStatus.progress === SUCCESS) ? PENDING : false;
-    const isSuccess = !loading && loadingStatus.progress === PENDING ? SUCCESS : false;
-    const progressState = isPending || isSuccess || null;
-    const handleStateUpdate = (progress: string | null) => (progress && !disabled ? setLoadingStatus({ progress }) : false)
-    handleStateUpdate(progressState)
-  }, [loading, loadingStatus.progress, disabled])
-
-  const Status = () => {
-    const C = loadingStatus.progress === PENDING ? LoadingSpinner : Tick
-    const CL = `pa-button__loading-${loadingStatus.progress === PENDING ? 'spinner' : 'success'}`
-    return (
-      <>
-        { loadingStatus.progress &&
-          <C className={`${CL} pa-button__loading-indicator`} /> }
-      </>
-    )
-  }
+  const opacity = loading && !disabled ? 0 : 1
+  const showSpinner = loading && !disabled
 
   return (
     <Component
-      className={CLASS_LIST}
       { ...rest }
       disabled={disabled}
       block={block}
     >
-      <div className='pa-button__inner-wrapper'>
-        <div className="pa-button__text-content">{children}</div>
-        <Status />
-      </div>
+      <Wrapper>
+        <TextContent style={{ opacity }}>{children}</TextContent>
+        {showSpinner && <LoadingSpinner />}
+      </Wrapper>
     </Component>
   )
 }
-
-
