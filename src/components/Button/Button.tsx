@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { LoadingSpinner, Tick } from '../Icons'
 import { ButtonProps } from './Button.d'
-import { Primary, Secondary, Tertiary } from '.'
+import { Primary } from './Primary'
+import { Secondary } from './Secondary'
+import { Tertiary } from './Tertiary'
 
 const insert = (cond: any, ...value: any) => cond ? [value] : [] 
 
@@ -21,13 +23,9 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
   const BTTN_TYPE = `pa-button--${type}`
 
   const CLASS_LIST = [
-    'pa-button',
-    BTTN_TYPE,
     insert(loadingStatus.progress, 'pa-button--loading'),
     insert(loadingStatus.progress === PENDING, 'pa-button--loading-pending'),
     insert(loadingStatus.progress === SUCCESS, 'pa-button--loading-success'),
-    insert(disabled, 'pa-button--disabled'),
-    insert(block, 'pa-button--block')
   ].join(' ')
 
   useEffect(() => {
@@ -52,9 +50,9 @@ export const Button = ({ type = 'primary', loading = false, disabled = false, bl
   return (
     <Component
       className={CLASS_LIST}
-      buttonTheme={type}
       { ...rest }
       disabled={disabled}
+      block={block}
     >
       <div className='pa-button__inner-wrapper'>
         <div className="pa-button__text-content">{children}</div>

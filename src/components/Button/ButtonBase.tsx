@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ButtonBase = styled.button<{ buttonTheme: string }>`
+export const ButtonBase = styled.button<{ block?: boolean }>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};
     color: ${props => props.theme.colors.lightGrey};
@@ -19,18 +19,24 @@ export const ButtonBase = styled.button<{ buttonTheme: string }>`
   cursor: pointer;
   transition: background-color 0.125s;
 
-  &:not(.pa-button--block) + &:not(.pa-button--block) {
-    margin-left: ${props => props.theme.size(16)};
-  }
+  ${props => (
+    props.block ? (
+      `
+        width: 100%;
+        & + & {
+          margin-top: ${props.theme.size(16)};
+        }
+      `
+    ) : (
+      `
+        width: auto;
+        & + & {
+          margin-left: ${props.theme.size(16)};
+        }
+      ` 
+    )
+  )}
 
-  &.pa-button--block {
-    display: block;
-    width: 100%;
-    & + & {
-      margin-top: ${props => props.theme.size(16)};
-    }
-  }
-  
   &:before {
     content: '';
     position: absolute;
