@@ -15,6 +15,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   type: 'primary',
   loading: false,
+  success: false,
   disabled: false,
   children: 'Publish',
   block: false
@@ -24,6 +25,7 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   type: 'secondary',
   loading: false,
+  success: false,
   children: 'Publish',
   disabled: false,
   block: false
@@ -33,6 +35,7 @@ export const Tertiary = Template.bind({});
 Tertiary.args = {
   type: 'tertiary',
   loading: false,
+  success: false,
   children: 'Publish',
   disabled: false,
   block: false
@@ -43,6 +46,7 @@ Disabled.args = {
   type: 'primary',
   disabled: true,
   loading: false,
+  success: false,
   children: 'Publish',
   block: false
 };

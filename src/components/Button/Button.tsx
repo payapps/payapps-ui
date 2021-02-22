@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { LoadingSpinner } from '../Icons'
+import { LoadingSpinner, Tick } from '../Icons'
 import { ButtonProps } from './Button.d'
 import { Primary } from './Primary'
 import { Secondary } from './Secondary'
@@ -14,6 +14,7 @@ export const Button = ({
   loading = false,
   disabled = false,
   block = false,
+  success,
   children,
   ...rest
 }: ButtonProps) => {
@@ -24,18 +25,21 @@ export const Button = ({
   }
 
   const Component = ComponentTypes[type]
-  const opacity = loading && !disabled ? 0 : 1
-  const showSpinner = loading && !disabled
+  const isLoading = loading && !disabled
+  const opacity = isLoading ? 0 : 1
+  const status = isLoading && success ? 'success' : isLoading ? 'loading' : null
+  const ButtonRequestStatus = status === 'success' ? Tick : LoadingSpinner
 
   return (
     <Component
       { ...rest }
       disabled={disabled}
+      status={status}
       block={block}
     >
       <Wrapper>
         <TextContent style={{ opacity }}>{children}</TextContent>
-        {showSpinner && <LoadingSpinner />}
+        {status && <ButtonRequestStatus />}
       </Wrapper>
     </Component>
   )

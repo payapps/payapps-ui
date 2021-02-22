@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ButtonBase = styled.button<{ block?: boolean }>`
+export const ButtonBase = styled.button<{ block?: boolean, status?: string | null }>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};
     color: ${props => props.theme.colors.lightGrey};
@@ -18,6 +18,25 @@ export const ButtonBase = styled.button<{ block?: boolean }>`
   text-transform: capitalize;
   cursor: pointer;
   transition: background-color 0.125s;
+
+  ${props => {
+    const statusBGColor = props.status === 'loading' ? 'lightBlue' : 'green'
+    const opacity = props.status === 'loading' ? '1' : 'inherit'
+    return props.status ? (
+      `
+        && {
+          border: solid transparent 1px;
+          background-color: ${props.theme.colors[statusBGColor]};
+          color: ${props.theme.colors.white};
+          &:before {
+            opacity: ${opacity};
+          }
+        }
+      `
+    ) : (
+      null
+    )
+  }}
 
   ${props => (
     props.block ? (
@@ -71,8 +90,8 @@ export const ButtonBase = styled.button<{ block?: boolean }>`
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translateY(-50%) translateX(-50%); 
-    width: 1.1em;
-    height: 1.1em;
+    transform: translateY(-55%) translateX(-50%);
+    width: 1.2em;
+    height: 1.2em;
   }
 `
