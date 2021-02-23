@@ -9,7 +9,7 @@ import { Tertiary } from './Tertiary'
 const TextContent = styled.div`transition: opacity 0.125s;`
 const Wrapper = styled.div`position: relative;`
 
-export const Button = ({
+const Button = ({
   type = 'primary',
   loading = false,
   disabled = false,
@@ -44,3 +44,5 @@ export const Button = ({
     </Component>
   )
 }
+
+export default Button
